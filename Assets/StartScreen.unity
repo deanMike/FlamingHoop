@@ -396,6 +396,9 @@ MonoBehaviour:
   tuningVariablesButtonText: 
   variablesSaved: 0
   win: 0
+  winningNum: 0
+  cubeNum: 1
+  appendix: {x: 0, y: 0, z: 0}
 --- !u!4 &1371036833
 Transform:
   m_ObjectHideFlags: 0

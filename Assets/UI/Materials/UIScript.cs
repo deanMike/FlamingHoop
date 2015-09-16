@@ -62,6 +62,7 @@ public class UIScript : MonoBehaviour {
     public void LoadMenu() {
         Application.LoadLevel("StartScreen");
     }
+
     public void SaveVariables() {
         variables.variablesSaved = true;
         variables.gameLength = int.Parse(inputGameLength);

@@ -12,6 +12,7 @@ public class GameplayScript : MonoBehaviour {
     private int height;
     private bool found = false;
     public Transform prefab;
+    
 
     public Material Green, Red;
 
@@ -22,17 +23,24 @@ public class GameplayScript : MonoBehaviour {
         variables = GameObject.Find("TuningVariables").GetComponent<TuningVariables>();
         timer = GameObject.Find("Timer");
         timeRemaining = variables.gameLength;
-        
+
+        variables.winningNum = variables.winner.Next(1, variables.gridHeight * variables.gridWidth);
+
         for (int x = 180; x < 180 + variables.gridWidth; x++) {
             for (int y = 325; y < 325 + variables.gridHeight; y++) {
                 Instantiate(prefab);
                 prefab.localScale = new Vector3(50, 50, 50);
                 prefab.transform.position = new Vector3(((x - 179) * 60) + 90, ((y - 324) * 60) + 16, -28);
-                prefab.gameObject.tag = variables.cubeNum.ToString();
                 variables.cubeNum++;
+                prefab.name = variables.cubeNum.ToString();
+                if (variables.cubeNum == variables.winningNum) {
+                    variables.appendix = prefab.name + "(Clone)";
+                }
+                
             }
         }
-        variables.winningNum = variables.winner.Next(variables.cubeNum);
+        Debug.Log(variables.winningNum.ToString());
+        Debug.Log(variables.appendix.ToString());
 
     }
 
@@ -49,8 +57,12 @@ public class GameplayScript : MonoBehaviour {
             Application.LoadLevel("GameSummary");
         }
         if (variables.win) {
-            Application.LoadLevel("GameSummary");
+            Invoke("LoadSummary", 1.5f);
         }
     
+    }
+
+    public void LoadSummary() {
+        Application.LoadLevel("GameSummary");
     }
 }

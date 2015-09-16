@@ -16,6 +16,10 @@ public class TuningVariables : MonoBehaviour {
     public System.Random winner = new System.Random();
     public int cubeNum = 1;
 
+    public int score = 0;
+
+    public string appendix;
+
     void Awake() {
         DontDestroyOnLoad(transform.gameObject);
     }

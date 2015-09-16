@@ -16,10 +16,14 @@ public class cubeScript : MonoBehaviour {
 	
 	}
     void OnMouseDown() {
-        if (int.Parse(this.gameObject.tag) == variables.winningNum) {
-            this.GetComponent<Renderer>().material.color = Color.green;
+        if (name == variables.appendix) {
+            GetComponent<Renderer>().material.color = Color.green;
+            Debug.Log("WIN!");
             variables.win = true;
+        } else {
+            this.GetComponent<Renderer>().material.color = Color.red;
         }
-        this.GetComponent<Renderer>().material.color = Color.red;
     }
+
+
 }
